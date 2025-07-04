@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TeuConvite | Convites Elegantes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #333;
+      --primary-color-light: #555;
+      --primary-color-dark: #111;
+      --whatsapp-green: #25d366;
+      --whatsapp-green-hover: #1ebe5b;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--primary-color);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: var(--primary-color-light);
+      outline: none;
+    }
+    header {
+      padding: 2rem 3rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+      position: relative;
+      z-index: 2;
+    }
+    .logo {
+      max-height: 300px;
+      height: auto;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s forwards;
+    }
+    nav {
+      margin-top: 1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInUp 1s 0.3s forwards;
+    }
+    nav a {
+      margin: 0 1.25rem;
+      color: var(--primary-color-dark);
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color-dark);
+      transition: width 0.3s ease, left 0.3s ease;
+      border-radius: 1px;
+    }
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+      left: 0;
+    }
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      margin: 3rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s 0.6s forwards;
+    }
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      color: var(--primary-color-dark);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      color: #555;
+      font-weight: 400;
+      white-space: pre-line;
+    }
+    .btn-whatsapp {
+      background-color: var(--whatsapp-green);
+      color: white;
+      padding: 0.85rem 2.8rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 35px;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 6px 12px rgba(37, 211, 102, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-whatsapp i {
+      font-size: 1.5rem;
+    }
+    .btn-whatsapp:hover {
+      background-color: var(--whatsapp-green-hover);
+      box-shadow: 0 8px 16px rgba(30, 190, 91, 0.5);
+      transform: scale(1.05);
+    }
+    section.models {
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s 1s forwards;
+    }
+    section.models h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--primary-color-dark);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.8rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+      cursor: pointer;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      display: block;
+      user-select: none;
+      filter: grayscale(10%);
+    }
+    .gallery img:hover {
+      filter: grayscale(0);
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    section.how-it-works {
+      max-width: 700px;
+      margin: 0 auto 5rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s 1.4s forwards;
+    }
+    section.how-it-works h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color-dark);
+    }
+    section.how-it-works ol {
+      list-style: decimal inside;
+      text-align: left;
+      padding-left: 1rem;
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      line-height: 1.4;
+      max-width: 420px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+    section.how-it-works ol li {
+      margin-bottom: 0.8rem;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.95rem;
+      color: #999;
+      border-top: 1px solid #e2e2e2;
+      font-weight: 400;
+      background: #fff;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      .logo {
+        max-width: 90vw;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Bolas no fundo */
+    #background-circles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: moveCircle 25s linear infinite alternate;
+      filter: blur(20px);
+    }
+    @keyframes moveCircle {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+      100% {
+        transform: translateY(-150px) translateX(80px) scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="background-circles"></div>
+
+  <header>
+    <img src="logo.png" alt="Logo TeuConvite" class="logo" />
+    <nav>
+      <a href="#models">Modelos</a>
+      <a href="#how-it-works">Como Funciona</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" role="banner">
+      <h2>Convites que fazemos</h2>
+      <p>Casamento | 15 anos | Debutante | Corporativo | Formatura <br>(Trabalhamos apenas com convites digitais!)</p>
+      <a href="https://wa.me/5511993315934?text=Olá,+gostaria+de+fazer+um+convite+virtual!" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Peça seu convite
+      </a>
+    </section>
+
+    <section id="models" class="models" aria-label="Modelos de convites">
+      <h3>Exemplos do nosso trabalho</h3>
+      <div class="gallery">
+        <img src="convite1.png" alt="Convite 1" tabindex="0" />
+        <img src="convite1.png" alt="Convite 2" tabindex="0" />
+        <img src="convite1.png" alt="Convite 3" tabindex="0" />
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works" aria-label="Como funciona o processo de convites">
+      <h3>Como funciona ?</h3>
+      <ol>
+        <li><strong>Entre em contato conosco</strong> e escolha seu modelo favorito</li>
+        <li><strong>Enviamos</strong> a prévia personalizada</li>
+        <li><strong>Você aprova</strong> e recebe o link final</li>
+        <li><strong>Compartilhe</strong> com quem quiser!</li>
+	<li><strong>Só trabalhamos</strong> com convites digitais</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 TeuConvite. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const background = document.getElementById('background-circles');
+    const colors = ['#ffd5ec', '#d4f1f9', '#ffeacc', '#d9f8d4', '#e3defe', '#fce1cc'];
+
+    for (let i = 0; i < 15; i++) {
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
+      const size = Math.random() * 200 + 150; // agora de 150px até 350px
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      circle.style.top = `${Math.random() * 100}%`;
+      circle.style.left = `${Math.random() * 100}%`;
+      circle.style.animationDuration = `${20 + Math.random() * 15}s`;
+      background.appendChild(circle);
+    }
+  </script>
+</body>
+</html>
